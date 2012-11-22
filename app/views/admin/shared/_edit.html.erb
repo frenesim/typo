@@ -6,8 +6,9 @@
 <% end %>
 
 <%if params[:action]=='edit' && User.find(session["user_id"]).profile.id == 1 then %>
-	<%= form_tag(form_action, :id => "merge_with")  %>
-    	<h4><%= _("Merge Articles") %></h4>
-    	<%= _("Article ID:") %><%= text_field 'merge_article','id', {:autocomplete => 'off', :style => 'width: 10%'} %>
-    	<input id='merge_article' type="submit" value="<%= _('Merge Article') %>" name="merge[article]" class="btn info"/>
+	<h4><%= _("Merge Articles") %></h4>
+	<%= form_tag({:controller => :content, :action => :merge, :id => @article.id}, {:method=>:put, :name => "merge_with", :class => ('autosave')})  %>
+    	<%= _("Article ID:") %>
+    	<%= text_field 'merge_article','id', {:autocomplete => 'off', :style => 'width: 10%'} %>
+    	<%= submit_tag 'Merge Article', :class => "btn info"%>
 <%end%>

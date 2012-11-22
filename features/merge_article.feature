@@ -8,7 +8,7 @@ Feature: Merge Articles as admin
 
   Scenario: Admin successfully merge articles
   	Given I am logged into the admin panel as admin
-    Given I am on the edit article page
+    Given I am on the edit article id 2 page
     When I fill in "merge_article_id" with "1"
     And I press "Merge"
     Then I should see "Article was successfully merged"

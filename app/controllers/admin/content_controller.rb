@@ -38,15 +38,24 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def merge
-    @other_article_id = params['merge_article']['id']
+    other_article_id = params['merge_article']['id'].to_i
     @article = Article.find(params[:id])
     unless @article.access_by? current_user
       redirect_to :action => 'index'
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
     end
-    debugger
-    Article.merge_with(@other_article_id)
+    if @article.id == other_article_id
+      redirect_to :action => 'index'
+      flash[:error] = _("Error, you cannot merge and article with it self")
+      return
+    end
+    unless Article.exists?(other_article_id)
+      redirect_to :action => 'index'
+      flash[:error] = _("Error, the article you are trying to merge to do not exists")
+      return
+    end
+    @article.merge_with(other_article_id)
     redirect_to :action => 'index'
     set_the_flash
   end

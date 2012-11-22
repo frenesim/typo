@@ -9,6 +9,6 @@
 	<h4><%= _("Merge Articles") %></h4>
 	<%= form_tag({:controller => :content, :action => :merge, :id => @article.id}, {:method=>:put, :name => "merge_with", :class => ('autosave')})  %>
     	<%= _("Article ID:") %>
-    	<%= text_field 'merge_article','id', {:autocomplete => 'off', :style => 'width: 10%'} %>
+    	<%= text_field_tag "merge_with", '',{:autocomplete => 'off', :style => 'width: 10%'} %>
     	<%= submit_tag 'Merge Article', :class => "btn info"%>
 <%end%>

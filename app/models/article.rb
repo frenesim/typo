@@ -75,6 +75,7 @@ class Article < Content
     other_article = Article.find_by_id(other_article_id)
     merged_text = other_article.body + "<p>" + self.body
     Article.update(other_article_id,:body=>merged_text)
+    self.comments{|c| c.article_id=other_article_id; c.save}
     self.delete
   end
     

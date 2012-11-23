@@ -31,7 +31,7 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-Given /^the blog is set up$/ do
+Given /^the blog is set up$/ do |articles_table|
   Blog.default.update_attributes!({:blog_name => 'Teh Blag',
                                    :base_url => 'http://localhost:3000'});
   Blog.default.save!
@@ -47,6 +47,12 @@ Given /^the blog is set up$/ do
                 :profile_id => 2,
                 :name => 'Tip',
                 :state => 'active'})
+end
+
+Given /the following movies exist/ do |articles_table|
+  articles_table.hashes.each do |article|
+    Article.create!(article)
+  end
 end
 
 And /^I am logged into the admin panel as (.+)$/ do |user_name|

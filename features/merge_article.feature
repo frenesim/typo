@@ -5,13 +5,19 @@ Feature: Merge Articles as admin
 
   Background:
     Given the blog is set up
-
+    Given the following articles exist:
+  	| title         | body    |
+  	| Aladdin       | Gddfsd  |
+  	| Aladdinoli    | Geeeee  |
+	
   Scenario: Admin successfully merge articles
   	Given I am logged into the admin panel as admin
     Given I am on the edit article id 2 page
     When I fill in "merge_article_id" with "1"
     And I press "Merge"
-    Then I should see "Article was successfully merged"
+    Then I should be on the admin content page
+    And I should see "Article was successfully merged"
+    
 
 
   Scenario: Non-Admin can not merge articles

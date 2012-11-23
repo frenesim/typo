@@ -38,7 +38,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def merge
-    other_article_id = params['merge_article']['id'].to_i
+    other_article_id = params['merge_with'].to_i
     @article = Article.find(params[:id])
     unless @article.access_by? current_user
       redirect_to :action => 'index'

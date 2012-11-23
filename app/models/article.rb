@@ -73,9 +73,9 @@ class Article < Content
   
   def merge_with(other_article_id)
     other_article = Article.find_by_id(other_article_id)
-    merged_text = other_article.body + "<p>" + self.body
-    Article.update(other_article_id,:body=>merged_text)
-    self.delete
+    next_article = other_article.dup
+    next_article.body = other_article.body + "<p>" + self.body
+    next_article.save
   end
     
   def set_permalink

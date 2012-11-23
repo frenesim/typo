@@ -30,7 +30,7 @@ gem 'rails', '~> 3.0.10'
 gem 'require_relative'
 gem 'htmlentities'
 gem 'json'
-gem 'bluecloth', '~> 2.0.6'
+gem 'bluecloth', '~> 2.1'
 gem 'coderay', '~> 0.9'
 gem 'kaminari'
 gem 'RedCloth', '~> 4.2.8'
@@ -45,8 +45,7 @@ gem 'acts_as_tree_rails3'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 
 group :development, :test do
-  gem 'ruby-debug-base19', '0.11.26', :path => "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/ruby-debug-base19-0.11.26/"
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19'
   gem 'factory_girl', '~> 2.2'
   gem 'webrat'
   gem 'rspec-rails', '~> 2.0'

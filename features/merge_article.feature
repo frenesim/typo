@@ -12,14 +12,13 @@ Feature: Merge Articles as admin
 	
   Scenario: Admin successfully merge articles
   	Given I am logged into the admin panel as admin
-    Given I am on the edit article id 2 page
-    When I fill in "merge_article_id" with "1"
+    Given I am on the edit article id 3 page
+    When I fill in "merge_with" with "2"
     And I press "Merge"
     Then I should be on the admin content page
     And I should see "Article was successfully merged"
     
-
-
+    
   Scenario: Non-Admin can not merge articles
   	Given I am logged into the admin panel as tipical
     Given I am on the new article page

@@ -12,7 +12,7 @@ Feature: Merge Articles as admin
 	
   Scenario: Admin successfully merge articles
   	Given I am logged into the admin panel as admin
-    Given I am on the edit article id 3 page
+    Given I am on the edit article id 1 page
     When I fill in "merge_with" with "2"
     And I press "Merge"
     Then I should be on the admin content page

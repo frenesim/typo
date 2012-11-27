@@ -2,7 +2,10 @@ class Admin::CategoriesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index; redirect_to :action => 'new' ; end
-  def edit; new_or_edit;  end
+  def edit
+    @category_id = params[:id]
+    new_or_edit
+  end
 
   def new 
     respond_to do |format|
@@ -25,7 +28,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def new_or_edit
     @categories = Category.find(:all)
-    
+     
     params[:id] ? @category = Category.find(params[:id]) : nil
     #@category.attributes = params[:category]
     if request.post?
@@ -44,7 +47,8 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def save_category
-    if @category.save!
+    @category.update_attributes(params[:category])
+    if @category.save
       flash[:notice] = _('Category was successfully saved.')
     else
       flash[:error] = _('Category could not be saved.')

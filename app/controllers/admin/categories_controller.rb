@@ -24,16 +24,14 @@ class Admin::CategoriesController < Admin::BaseController
     return(render 'admin/shared/destroy') unless request.post?
 
     @record.destroy
-    redirect_to :action => 'new'
+    redirect_to :action => 'edit'
   end
 
   private
 
   def new_or_edit
     @categories = Category.find(:all)
-     
     params[:id] ? @category = Category.find(params[:id]) : nil
-    #@category.attributes = params[:category]
     if request.post?
       respond_to do |format|
         format.html { save_category }
@@ -56,7 +54,7 @@ class Admin::CategoriesController < Admin::BaseController
     else
       flash[:error] = _('Category could not be saved.')
     end
-    redirect_to :action => 'new'
+    redirect_to :action => 'edit'
   end
 
 end
